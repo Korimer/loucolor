@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8" />
+<title>Rust Code Highlighter With Color Picker</title>
+
 <style>
-  pre { background:#1e1e1e; color:#eee; padding:20px; }
-  .comment { color:#6a9955; }
+  body { font-family: Arial, sans-serif; background:#2b2b2b; color:white; }
+  pre { background:#1e1e1e; color:#eee; padding:20px; overflow:auto; }
+
+  /* Default concept colors */
+  .Comment { color:#6a9955; }
   .doc { color:#6a9955; font-style:italic; }
   .keyword { color:#c586c0; }
   .type { color:#4ec9b0; }
@@ -15,12 +21,67 @@
   .macro { color:#c586c0; }
   .regex { color:#d16969; }
   .special { color:#ffcb6b; }
+
+  .panel {
+    background:#1e1e1e;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+  }
+
+  select, input[type="color"] {
+    padding:6px;
+    margin:5px;
+  }
 </style>
 </head>
+
 <body>
 
+<h2>Rust Code + Live Color Picker</h2>
+
+<div class="panel">
+  <label class="label">Select Class: </label>
+  <select id="classSelector">
+      <option value="comment">comment</option>
+      <option value="doc">doc</option>
+      <option value="keyword">keyword</option>
+      <option value="type">type</option>
+      <option value="function">function</option>
+      <option value="string">string</option>
+      <option value="number">number</option>
+      <option value="operator">operator</option>
+      <option value="member">member</option>
+      <option value="macro">macro</option>
+      <option value="regex">regex</option>
+      <option value="special">special</option>
+  </select>
+
+  <label>Pick Color: </label>
+  <input type="color" id="colorPicker" value="#ffffff" />
+
+  <button id="applyBtn">Apply</button>
+</div>
+
+<script>
+document.getElementById("applyBtn").onclick = function () {
+    const className = document.getElementById("classSelector").value;
+    const color = document.getElementById("colorPicker").value;
+
+    // Apply style to elements with that class
+    const elements = document.getElementsByClassName(className);
+    for (let el of elements) {
+        el.style.color = color;
+    }
+};
+</script>
+
 <pre>
-<span class="doc">//! This module demonstrates many Rust concepts in one snippet</span>
+<span class="doc">
+//! This module demonstrates many Rust concepts in one snippet!
+// This header can be considered a docstring.
+// For the record.
+</span>
 
 <span class="comment">// Import / Namespace</span>
 <span class="keyword">use</span> <span class="namespace">std::collections::HashMap</span>;
@@ -38,7 +99,7 @@
 <span class="keyword">impl</span> <span class="type">Circle</span> {
     <span class="comment">// Function with Parameter Variable</span>
     <span class="keyword">pub fn</span> <span class="function">new</span>(<span class="variable">radius</span>: <span class="type">f64</span>) -> <span class="type">Circle</span> {
-        <span class="keyword">return</span> <span class="type">Circle</span> { <span class="member">radius</span> }; 
+        <span class="keyword">return</span> <span class="type">Circle</span> { <span class="member">radius</span> };
     }
 
     <span class="keyword">pub fn</span> <span class="function">area</span>(&self) -> <span class="type">f64</span> {
@@ -64,44 +125,35 @@
     <span class="keyword">let</span> <span class="variable">url</span> = <span class="string">"https://www.rust-lang.org"</span>;
     <span class="keyword">let</span> <span class="variable">path</span> = <span class="string">"/usr/local/bin"</span>;
 
-    <span class="comment">// Debug</span>
     println!(<span class="string">"Debug info: {:?}"</span>, (<span class="variable">name</span>, <span class="variable">int_val</span>, <span class="variable">float_val</span>, <span class="variable">escaped_str</span>, <span class="variable">ch</span>));
 
-    <span class="comment">// Macro call</span>
     greet!(<span class="variable">name</span>);
 
-    <span class="comment">// Repeat</span>
     <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>.. <span class="number">3</span> {
         println!(<span class="string">"Repeat count: {}"</span>, <span class="variable">i</span>);
     }
 
-    <span class="comment">// Conditional</span>
     <span class="keyword">if</span> <span class="variable">int_val</span> <span class="operator">&gt;</span> <span class="number">40</span> {
         println!(<span class="string">"int_val is greater than 40"</span>);
     } <span class="keyword">else</span> {
         println!(<span class="string">"int_val is 40 or less"</span>);
     }
 
-    <span class="comment">// Regex</span>
     <span class="keyword">let</span> <span class="variable">re</span> = Regex::new(<span class="regex">r"^\w+://[\w.-]+$"</span>)?;
     <span class="keyword">if</span> <span class="variable">re</span>.is_match(<span class="variable">url</span>) {
         println!(<span class="string">"Valid URL detected!"</span>);
     }
 
-    <span class="comment">// HashMap</span>
     <span class="keyword">let mut</span> <span class="variable">map</span>: HashMap&lt;<span class="type">String</span>, <span class="type">i32</span>&gt; = HashMap::new();
     <span class="variable">map</span>.insert(<span class="string">"one"</span>.to_string(), <span class="number">1</span>);
 
-    <span class="comment">// Highlights / Underlines</span>
     println!(<span class="string">"*** Highlighted: {} ***"</span>, <span class="variable">name</span>);
     println!(<span class="string">"--- Underlined: {} ---"</span>, <span class="variable">name</span>);
 
-    <span class="comment">// Brackets / Delimiter</span>
     <span class="keyword">let</span> <span class="variable">array</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
     <span class="keyword">let</span> <span class="variable">tuple</span> = (<span class="number">1</span>, <span class="string">"two"</span>);
     <span class="keyword">let</span> <span class="variable">sum</span> = <span class="variable">array</span>[<span class="number">0</span>] <span class="operator">+</span> <span class="variable">int_val</span>;
 
-    <span class="comment">// Diff</span>
     println!(<span class="string">"Diff:\n- old value: {}\n+ new value: {}"</span>, <span class="number">40</span>, <span class="variable">int_val</span>);
 
     <span class="keyword">return</span> Ok(());

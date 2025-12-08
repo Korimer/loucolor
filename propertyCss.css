@@ -1,0 +1,47 @@
+.Variables {
+    .Builtin { color:#ffffff; }
+    .Parameter { color:#ffffff; }
+    .Member { color:#ffffff; }
+    .Constant { color:#ffffff; }
+.Declarations {
+    .Import { color:#ffffff; }
+    .Namespace { color:#ffffff; }
+    .Type { color:#ffffff; }
+    .Function { color:#ffffff; }
+    .Macro { color:#ffffff; }
+    .Repeat { color:#ffffff; }
+    .Conditional { color:#ffffff; }
+  }
+.Formalities {
+    .Return { color:#ffffff; }
+    .Exception { color:#ffffff; }
+    .Type { color:#ffffff; }
+    .Decorator { color:#ffffff; }
+  }
+.Literals {
+    .Integers { color:#ffffff; }
+    .Floats { color:#ffffff; }
+  }
+.RawText {
+    .Comments { color:#ffffff; }
+    .Strings { color:#ffffff; }
+    .RegEx { color:#ffffff; }
+    .DocString { color:#ffffff; }
+    .Debug { color:#ffffff; }
+    .Special { color:#ffffff; }
+    .Path { color:#ffffff; }
+    .Url { color:#ffffff; }
+    .Escapes { color:#ffffff; }
+    .Character { color:#ffffff; }
+  }
+.Punctuation {
+    .Bracket { color:#ffffff; }
+    .Delimiter { color:#ffffff; }
+    .Operator { color:#ffffff; }
+    .Special { color:#ffffff; }
+  }
+.General {
+    .Underlines { color:#ffffff; }
+    .Highlights { color:#ffffff; }
+    .Diff { color:#ffffff; }
+  }
