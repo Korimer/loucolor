@@ -14,19 +14,53 @@
 
   .BackGround = { color: var(--Background-color)}
 
-  /* Default concept colors */
-  .Comment { color:#6a9955; }
-  .doc { color:#6a9955; font-style:italic; }
-  .keyword { color:#c586c0; }
-  .type { color:#4ec9b0; }
-  .function { color:#dcdcaa; }
-  .string { color:#ce9178; }
-  .number { color:#b5cea8; }
-  .operator { color:#d4d4d4; }
-  .member { color:#9cdcfe; }
-  .macro { color:#c586c0; }
-  .regex { color:#d16969; }
-  .special { color:#ffcb6b; }
+  .Variables {
+      .Builtin { color:#ffffff; }
+      .Parameter { color:#ffffff; }
+      .Member { color:#ffffff; }
+      .Constant { color:#ffffff; }
+  .Declarations {
+      .Import { color:#ffffff; }
+      .Namespace { color:#ffffff; }
+      .Type { color:#ffffff; }
+      .Function { color:#ffffff; }
+      .Macro { color:#ffffff; }
+      .Repeat { color:#ffffff; }
+      .Conditional { color:#ffffff; }
+    }
+  .Formalities {
+      .Return { color:#ffffff; }
+      .Exception { color:#ffffff; }
+      .Type { color:#ffffff; }
+      .Decorator { color:#ffffff; }
+    }
+  .Literals {
+      .Integers { color:#ffffff; }
+      .Floats { color:#ffffff; }
+    }
+  .RawText {
+      .Comments { color:#ffffff; }
+      .Strings { color:#ffffff; }
+      .RegEx { color:#ffffff; }
+      .DocString { color:#ffffff; }
+      .Debug { color:#ffffff; }
+      .Special { color:#ffffff; }
+      .Path { color:#ffffff; }
+      .Url { color:#ffffff; }
+      .Escapes { color:#ffffff; }
+      .Character { color:#ffffff; }
+    }
+  .Punctuation {
+      .Bracket { color:#ffffff; }
+      .Delimiter { color:#ffffff; }
+      .Operator { color:#ffffff; }
+      .Special { color:#ffffff; }
+    }
+  .General {
+      .Underlines { color:#ffffff; }
+      .Highlights { color:#ffffff; }
+      .Diff { color:#ffffff; }
+    }
 
   .panel {
     background:#1e1e1e;
@@ -59,12 +93,66 @@
 <body>
 
 <h2>Rust Code + Live Color Picker</h2>
-
 <div id="navbar", style="display:flex; gap:10px;">
-  <a>hi</a>
-  <div></div>
-  <a>bye</a>
+  <div style="display:block;">
+    <h1>Variables</h1>
+      <a>Builtin</a><br>
+      <a>Parameter</a><br>
+      <a>Member</a><br>
+      <a>Constant</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>Declarations</h1>
+      <a>Import</a><br>
+      <a>Namespace</a><br>
+      <a>Type</a><br>
+      <a>Function</a>
+      <a>Macro</a><br>
+      <a>Repeat</a><br>
+      <a>Conditional</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>Formalities</h1>
+      <a>Return</a><br>
+      <a>Exception</a><br>
+      <a>Type</a><br>
+      <a>Decorator</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>Literals</h1>
+      <a>Integers</a><br>
+      <a>Floats</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>RawText</h1>
+      <a>Comments</a><br>
+      <a>Strings</a><br>
+      <a>RegEx</a><br>
+      <a>DocString</a><br>
+      <a>Debug</a><br>
+      <a>Special</a><br>
+      <a>Path</a><br>
+      <a>Url</a><br>
+      <a>Escapes</a><br>
+      <a>Character</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>Punctuation</h1>
+      <a>Bracket</a><br>
+      <a>Delimiter</a><br>
+      <a>Operator</a><br>
+      <a>Special</a><br>
+  </div>
+  <div style="display:block;">
+    <h1>General</h1>
+      <a>Underlines</a><br>
+      <a>Highlights</a><br>
+      <a>Diff</a><br>
 </div>
+
+<!--
+  
+-->
 
 <div class="panel">
   <label class="label">Select Class: </label>
