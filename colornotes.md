@@ -80,7 +80,7 @@ AKA: I spend 25% of my writeup discussing something that makes up 3% of a codeba
 - Debug
 - - A sequence of text relevant to debugging a program, rather than actually running it. Generally very concise, spanning ~30 characters and always existing on a line with nothing else on it.
 - - Should be distinct from Declarations and any other form of Raw Text. Beyond that, a darker color is probably appropriate.
-- Special
+- Unique
 - - A string used to represent data with a predetermined format (eg. the text "11/9/04" representing a date).
 - - If RegEx is a different color from standard strings, you can re-use it here. If not, I'd prefer for the color to be unique. It still doesn't need to stand out among code, but it should be visibly different from a standard string.
 - Path
