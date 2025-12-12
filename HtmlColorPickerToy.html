@@ -10,56 +10,90 @@
 
   :root {
     --Background-color: #1e1e1e;
+    --Diff: #ffffff;
+    --Highlights: #ffffff;
+    --Underlines: #ffffff;
+    --Special: #ffffff;
+    --Operator: #ffffff;
+    --Delimiter: #ffffff;
+    --Bracket: #ffffff;
+    --Character: #ffffff;
+    --Escapes: #ffffff;
+    --Url: #ffffff;
+    --Path: #ffffff;
+    --Special: #ffffff;
+    --Debug: #ffffff;
+    --DocString: #ffffff;
+    --RegEx: #ffffff;
+    --Strings: #ffffff;
+    --Comments: #ffffff;
+    --Floats: #ffffff;
+    --Integers: #ffffff;
+    --Decorator: #ffffff;
+    --Type: #ffffff;
+    --Exception: #ffffff;
+    --Return: #ffffff;
+    --Conditional: #ffffff;
+    --Repeat: #ffffff;
+    --Macro: #ffffff;
+    --Function: #ffffff;
+    --Type: #ffffff;
+    --Namespace: #ffffff;
+    --Import: #ffffff;
+    --Constant: #ffffff;
+    --Member: #ffffff;
+    --Parameter: #ffffff;
+    --Builtin: #ffffff;
   }
 
   .BackGround = { color: var(--Background-color)}
 
   .Variables {
-      .Builtin { color:#ffffff; }
-      .Parameter { color:#ffffff; }
-      .Member { color:#ffffff; }
-      .Constant { color:#ffffff; }
+      .Builtin { color: var(--Builtin); }
+      .Parameter { color: var(--Parameter); }
+      .Member { color: var(--Member); }
+      .Constant { color: var(--Constant); }
   .Declarations {
-      .Import { color:#ffffff; }
-      .Namespace { color:#ffffff; }
-      .Type { color:#ffffff; }
-      .Function { color:#ffffff; }
-      .Macro { color:#ffffff; }
-      .Repeat { color:#ffffff; }
-      .Conditional { color:#ffffff; }
+      .Import { color: var(--Import); }
+      .Namespace { color: var(--Namespace); }
+      .Type { color: var(--Type); }
+      .Function { color: var(--Function); }
+      .Macro { color: var(--Macro); }
+      .Repeat { color: var(--Repeat); }
+      .Conditional { color: var(--Conditional); }
     }
   .Formalities {
-      .Return { color:#ffffff; }
-      .Exception { color:#ffffff; }
-      .Type { color:#ffffff; }
-      .Decorator { color:#ffffff; }
+      .Return { color: var(--Return); }
+      .Exception { color: var(--Exception); }
+      .Type { color: var(--Type); }
+      .Decorator { color: var(--Decorator); }
     }
   .Literals {
-      .Integers { color:#ffffff; }
-      .Floats { color:#ffffff; }
+      .Integers { color: var(--Integers); }
+      .Floats { color: var(--Floats); }
     }
   .RawText {
-      .Comments { color:#ffffff; }
-      .Strings { color:#ffffff; }
-      .RegEx { color:#ffffff; }
-      .DocString { color:#ffffff; }
-      .Debug { color:#ffffff; }
-      .Special { color:#ffffff; }
-      .Path { color:#ffffff; }
-      .Url { color:#ffffff; }
-      .Escapes { color:#ffffff; }
-      .Character { color:#ffffff; }
+      .Comments { color: var(--Comments); }
+      .Strings { color: var(--Strings); }
+      .RegEx { color: var(--RegEx); }
+      .DocString { color: var(--DocString); }
+      .Debug { color: var(--Debug); }
+      .Special { color: var(--Special); }
+      .Path { color: var(--Path); }
+      .Url { color: var(--Url); }
+      .Escapes { color: var(--Escapes); }
+      .Character { color: var(--Character); }
     }
   .Punctuation {
-      .Bracket { color:#ffffff; }
-      .Delimiter { color:#ffffff; }
-      .Operator { color:#ffffff; }
-      .Special { color:#ffffff; }
+      .Bracket { color: var(--Bracket); }
+      .Delimiter { color: var(--Delimiter); }
+      .Operator { color: var(--Operator); }
+      .Special { color: var(--Special); }
     }
   .General {
-      .Underlines { color:#ffffff; }
-      .Highlights { color:#ffffff; }
-      .Diff { color:#ffffff; }
+      .Underlines { color: var(--Underlines); }
+      .Highlights { color: var(--Highlights); }
+      .Diff { color: var(--Diff); }
     }
 
   .panel {
@@ -72,11 +106,10 @@
   #navbar {
     position: sticky;
     top: 0;
-    overflow: hidden;
     background-color: var(--Background-color);
   }
 
-  .navbar a {
+  #navbar a {
     display: inline-block;
     float: left;
     vertical-align: top;
@@ -92,8 +125,8 @@
 
 <body>
 
-<h2>Rust Code + Live Color Picker</h2>
-<div id="navbar", style="display:flex; gap:10px;">
+<h2 id="navbar">Rust Code + Live Color Picker</h2>
+<div style="display:flex; gap:10px;">
   <div style="display:block;">
     <h1>Variables</h1>
       <a>Builtin</a><br>
@@ -148,11 +181,9 @@
       <a>Underlines</a><br>
       <a>Highlights</a><br>
       <a>Diff</a><br>
+  </div>
 </div>
 
-<!--
-  
--->
 
 <div class="panel">
   <label class="label">Select Class: </label>
