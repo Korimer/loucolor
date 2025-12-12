@@ -127,61 +127,6 @@
 
 <h2>Rust Code + Live Color Picker</h2>
 <div id="navbar" style="display:flex; gap:10px;">
-  <div style="display:block;">
-    <h1>Variables</h1>
-      <a>Builtin</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Parameter</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Member</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Constant</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>Declarations</h1>
-      <a>Import</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Namespace</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Type</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Function</a><input type="color" id="colorPicker" value="#ffffff" />
-      <a>Macro</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Repeat</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Conditional</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>Formalities</h1>
-      <a>Return</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Exception</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Type</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Decorator</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>Literals</h1>
-      <a>Integers</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Floats</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>RawText</h1>
-      <a>Comments</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Strings</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>RegEx</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>DocString</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Debug</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Special</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Path</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Url</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Escapes</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Character</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>Punctuation</h1>
-      <a>Bracket</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Delimiter</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Operator</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Special</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
-  <div style="display:block;">
-    <h1>General</h1>
-      <a>Underlines</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Highlights</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-      <a>Diff</a><input type="color" id="colorPicker" value="#ffffff" /><br>
-  </div>
 </div>
 
 
@@ -209,16 +154,29 @@
 </div>
 
 <script>
-document.getElementById("applyBtn").onclick = function () {
-    const className = document.getElementById("classSelector").value;
-    const color = document.getElementById("colorPicker").value;
+  const data = {
+    "Variables": ["Builtin", "Parameter", "Member", "Constant"],
+    "Declarations": ["Import", "Namespace", "Type", "Function", "Macro", "Repeat", "Conditional"],
+    "Formalities": ["Return", "Exception", "Type", "Decorator"],
+    "Literals": ["Integers", "Floats"],
+    "RawText": ["Comments","Strings","RegEx","DocString","Debug","Special","Path","Url","Escapes","Character"],
+    "Punctuation": ["Bracket","Delimiter","Operator","Special"],
+    "General": ["Underlines","Highlights","Diff"]
+  };
 
-    // Apply style to elements with that class
-    const elements = document.getElementsByClassName(className);
-    for (let el of elements) {
-        el.style.color = color;
-    }
-};
+  const container = document.getElementById("navbar");
+
+  for ([title,subitems] of Object.entries(data)) {
+    const section = document.createElement("div");
+    
+    for ()
+    section.innerHTML = `<h1>${title}</h1>` +
+      subitems.map(subitem => `
+        <label>${subitem} <input type="color"></label><br>
+      `).join("");
+  
+    container.appendChild(section);
+  };
 </script>
 
 <pre>
