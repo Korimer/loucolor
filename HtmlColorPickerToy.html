@@ -131,24 +131,14 @@
 
 
 <div class="panel">
-  <label class="label">Select Class: </label>
-  <select id="classSelector">
-      <option value="comment">comment</option>
-      <option value="doc">doc</option>
-      <option value="keyword">keyword</option>
-      <option value="type">type</option>
-      <option value="function">function</option>
-      <option value="string">string</option>
-      <option value="number">number</option>
-      <option value="operator">operator</option>
-      <option value="member">member</option>
-      <option value="macro">macro</option>
-      <option value="regex">regex</option>
-      <option value="special">special</option>
-  </select>
+  <label>General Classification - </label>
+  <select id="genClass"></select>
+  <label>Specific Classification - </label>
+  <select id="specClass"></select>
 
   <label>Pick Color: </label>
   <input type="color" id="colorPicker" value="#ffffff" />
+
 
   <button id="applyBtn">Apply</button>
 </div>
@@ -164,19 +154,47 @@
     "General": ["Underlines","Highlights","Diff"]
   };
 
-  const container = document.getElementById("navbar");
+  const container = document.getElementById("navbar")
+  const classSelect = document.getElementById("genClass")
 
-  for ([title,subitems] of Object.entries(data)) {
-    const section = document.createElement("div");
-    
+  for (const [title,subitems] of Object.entries(data)) {
+    const opt = document.createElement("option")
+    opt.innerText = title
+    classSelect.appendChild(opt)
+
+    const section = document.createElement("div")
+    const sectionTitle = document.createElement("h1")
+      section.innerText = title
+      section.appendChild(document.createElement("br"))
+    for (const subitem of subitems) {
+      const subSection = document.createElement("label")
+        subSection.innerText = subitem + ": "
+      const colorPicker = document.createElement("input")
+        colorPicker.type = "color"
+      
+      subSection.appendChild(colorPicker)
+      subSection.appendChild(document.createElement("br"))
+      section.appendChild(subSection)
+    }
+    container.appendChild(section)
+  }
+
+  const subClassSelect = document.getElementById("specClass")
+  for (subitem of data["Variables"]) {
+    const opt = document.createElement("option")
+      opt.innerText = subitem
+    subClassSelect.appendChild(opt)
+  }
   
-    section.innerHTML = `<h1>${title}</h1>` +
-      subitems.map(subitem => `
-        <label>${subitem} <input type="color"></label><br>
-      `).join("");
-  
-    container.appendChild(section);
-  };
+  classSelect.onchange = function() {
+    subClassSelect.length = 0
+    for (subitem of data[classSelect.options[classSelect.selectedIndex].text]) {
+      const opt = document.createElement("option")
+        opt.innerText = subitem
+      subClassSelect.appendChild(opt)
+    }
+  }
+
 </script>
 
 <pre>
