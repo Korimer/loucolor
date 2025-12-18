@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Rust Code Highlighter With Color Picker</title>
 
 <style>
-  body { font-family: Arial, sans-serif; background:#2b2b2b; color:white; }
-  pre { background:#1e1e1e; color:#eee; padding:20px; overflow:auto; }
+  pre { background: var(--BG1); color:#eee; padding:20px; overflow:auto; }
 
   :root {
-    --Background-color: #1e1e1e;
-    --Diff: #ffffff;
     --Highlights: #ffffff;
     --Underlines: #ffffff;
     --Unique: #ffffff;
@@ -44,6 +41,13 @@
     --Member: #ffffff;
     --Parameter: #ffffff;
     --Builtin: #ffffff;
+    --BG1: #ffffff;
+    --BG2: #ffffff;
+    --Border: #ffffff;
+    --Header: #ffffff;
+    --DiffAdd: #ffffff;
+    --DiffMod: #ffffff;
+    --DiffRem: #ffffff;
   }
 
   .BackGround = { color: var(--Background-color)}
@@ -53,6 +57,7 @@
       .Parameter { color: var(--Parameter); }
       .Member { color: var(--Member); }
       .Constant { color: var(--Constant); }
+  }
   .Declarations {
       .Import { color: var(--Import); }
       .Namespace { color: var(--Namespace); }
@@ -61,20 +66,20 @@
       .Macro { color: var(--Macro); }
       .Repeat { color: var(--Repeat); }
       .Conditional { color: var(--Conditional); }
-    }
+  }
   .Formalities {
       .Return { color: var(--Return); }
       .Exception { color: var(--Exception); }
       .Type { color: var(--Type); }
       .Decorator { color: var(--Decorator); }
-    }
+  }
   .Literals {
       .Integers { color: var(--Integers); }
       .Floats { color: var(--Floats); }
-    }
+      .Strings { color: var(--Strings); }
+  }
   .RawText {
       .Comments { color: var(--Comments); }
-      .Strings { color: var(--Strings); }
       .RegEx { color: var(--RegEx); }
       .DocString { color: var(--DocString); }
       .Debug { color: var(--Debug); }
@@ -83,64 +88,47 @@
       .Url { color: var(--Url); }
       .Escapes { color: var(--Escapes); }
       .Character { color: var(--Character); }
-    }
+  }
   .Punctuation {
       .Bracket { color: var(--Bracket); }
       .Delimiter { color: var(--Delimiter); }
       .Operator { color: var(--Operator); }
       .Special { color: var(--Special); }
-    }
+  }
   .General {
       .Underlines { color: var(--Underlines); }
       .Highlights { color: var(--Highlights); }
-      .Diff { color: var(--Diff); }
-    }
-
-  .panel {
-    background:#1e1e1e;
-    padding:15px;
-    border-radius:8px;
-    margin-bottom:20px;
+      .BG1 { color: var(--BG1) }
+      .BG2 { color: var(--BG2) }
+      .Border { color: var(--Border) }
+      .Header { color: var(--Header) }
+      .DiffAdd { color: var(--DiffAdd) }
+      .DiffRem { color: var(--DiffRem) }
+      .DiffMod { color: var(--DiffMod) }
   }
 
-  #navbar {
-    top: 0;
-    display: sticky;
-    background-color: var(--Background-color);
-  }
-
-  #navbar a {
-    display: inline-block;
-    float: left;
-    vertical-align: top;
-    margin-right: 10px;
-  }
-
-  select, input[type="color"] {
-    padding:6px;
-    margin:5px;
+  #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--BG2);
+    color: var(--ConsoleText);
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
   }
 </style>
 </head>
 
 <body>
 
-<h2>Rust Code + Live Color Picker</h2>
 <div id="navbar" style="display:flex; gap:10px;">
-</div>
-
-
-<div class="panel">
-  <label>General Classification - </label>
-  <select id="genClass"></select>
-  <label>Specific Classification - </label>
-  <select id="specClass"></select>
-
-  <label>Pick Color: </label>
-  <input type="color" id="colorPicker" value="#ffffff" />
-
-
-  <button id="applyBtn">Apply</button>
 </div>
 
 <script>
@@ -151,51 +139,69 @@
     "Literals": ["Integers", "Floats"],
     "RawText": ["Comments","Strings","RegEx","DocString","Debug","Unique","Path","Url","Escapes","Character"],
     "Punctuation": ["Bracket","Delimiter","Operator","Special"],
-    "General": ["Underlines","Highlights","Diff"]
+    "General": ["Underlines","Highlights","BG1","BG2","Border","Header","DiffAdd","DiffRem", "DiffMod"]
   };
 
   const container = document.getElementById("navbar")
-  const classSelect = document.getElementById("genClass")
 
   for (const [title,subitems] of Object.entries(data)) {
-    const opt = document.createElement("option")
-    opt.innerText = title
-    classSelect.appendChild(opt)
-
     const section = document.createElement("div")
-    const sectionTitle = document.createElement("h1")
-      section.innerText = title
-      section.appendChild(document.createElement("br"))
+    const sectionTitle = document.createElement("h2")
+      sectionTitle.innerText = title
+      section.appendChild(sectionTitle)
     for (const subitem of subitems) {
-      const subSection = document.createElement("label")
-        subSection.innerText = subitem + ": "
+      const label = document.createElement("label")
+        label.style.cursor = "pointer"
+        label.style.borderWidth = "0.5px"
+        label.style.border = "solid"
+        label.style.borderColor = "var(--Border)"
+        label.style.backgroundColor = "var(--BG2)"
+        label.innerText = subitem
       const colorPicker = document.createElement("input")
         colorPicker.type = "color"
+        colorPicker.style.display = "none"
+
+      colorPicker.addEventListener("input", () => {
+        document.documentElement.style.setProperty(
+          "--" + label.innerText.trim(),
+          colorPicker.value
+        )
+        if (!label.innerText.trim() == "BG") {
+          label.style.color = colorPicker.value
+        }
+      })
+
       
-      subSection.appendChild(colorPicker)
-      subSection.appendChild(document.createElement("br"))
-      section.appendChild(subSection)
+      label.appendChild(colorPicker)
+      label.appendChild(document.createElement("br"))
+      section.appendChild(label)
     }
     container.appendChild(section)
   }
-
-  const subClassSelect = document.getElementById("specClass")
-  for (subitem of data["Variables"]) {
-    const opt = document.createElement("option")
-      opt.innerText = subitem
-    subClassSelect.appendChild(opt)
-  }
-  
-  classSelect.onchange = function() {
-    subClassSelect.length = 0
-    for (subitem of data[classSelect.options[classSelect.selectedIndex].text]) {
-      const opt = document.createElement("option")
-        opt.innerText = subitem
-      subClassSelect.appendChild(opt)
-    }
-  }
-
+  document.getElementById("navbar").childNodes[7].childNodes[4].style.color = "var(--BG1)"
 </script>
+
+<button id="backToTop" aria-label="Back to top">↑↓</button>
+
+<script>
+  const button = document.getElementById("backToTop");
+  let lastpos = 300
+  button.addEventListener("click", () => {
+    let scrollto = -1
+    if (window.scrollY > 50) {
+      lastpos = window.scrollY
+      scrollto = 0
+    } else {
+      scrollto = lastpos
+    }
+    window.scrollTo({
+      top: scrollto,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+<h3 style="position: sticky; top: 0; background: var(--Header);">header</h3>
 
 <pre>
 <span class="doc">
