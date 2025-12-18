@@ -41,7 +41,7 @@
     --Member: #ffffff;
     --Parameter: #ffffff;
     --Builtin: #ffffff;
-    --BG1: #ffffff;
+    --BG1: #000000;
     --BG2: #ffffff;
     --Border: #ffffff;
     --Header: #ffffff;
@@ -50,62 +50,52 @@
     --DiffRem: #ffffff;
   }
 
-  .BackGround = { color: var(--Background-color)}
-
-  .Variables {
-      .Builtin { color: var(--Builtin); }
-      .Parameter { color: var(--Parameter); }
-      .Member { color: var(--Member); }
-      .Constant { color: var(--Constant); }
-  }
-  .Declarations {
-      .Import { color: var(--Import); }
-      .Namespace { color: var(--Namespace); }
-      .Type { color: var(--Type); }
-      .Function { color: var(--Function); }
-      .Macro { color: var(--Macro); }
-      .Repeat { color: var(--Repeat); }
-      .Conditional { color: var(--Conditional); }
-  }
-  .Formalities {
-      .Return { color: var(--Return); }
-      .Exception { color: var(--Exception); }
-      .Type { color: var(--Type); }
-      .Decorator { color: var(--Decorator); }
-  }
-  .Literals {
-      .Integers { color: var(--Integers); }
-      .Floats { color: var(--Floats); }
-      .Strings { color: var(--Strings); }
-  }
-  .RawText {
-      .Comments { color: var(--Comments); }
-      .RegEx { color: var(--RegEx); }
-      .DocString { color: var(--DocString); }
-      .Debug { color: var(--Debug); }
-      .Unique { color: var(--Unique); }
-      .Path { color: var(--Path); }
-      .Url { color: var(--Url); }
-      .Escapes { color: var(--Escapes); }
-      .Character { color: var(--Character); }
-  }
-  .Punctuation {
-      .Bracket { color: var(--Bracket); }
-      .Delimiter { color: var(--Delimiter); }
-      .Operator { color: var(--Operator); }
-      .Special { color: var(--Special); }
-  }
-  .General {
-      .Underlines { color: var(--Underlines); }
-      .Highlights { color: var(--Highlights); }
-      .BG1 { color: var(--BG1) }
-      .BG2 { color: var(--BG2) }
-      .Border { color: var(--Border) }
-      .Header { color: var(--Header) }
-      .DiffAdd { color: var(--DiffAdd) }
-      .DiffRem { color: var(--DiffRem) }
-      .DiffMod { color: var(--DiffMod) }
-  }
+  .Builtin { color: var(--Builtin); }
+  .Parameter { color: var(--Parameter); }
+  .Member { color: var(--Member); }
+  .Constant { color: var(--Constant); }
+  
+  .Import { color: var(--Import); }
+  .Namespace { color: var(--Namespace); }
+  .Type { color: var(--Type); }
+  .Function { color: var(--Function); }
+  .Macro { color: var(--Macro); }
+  .Repeat { color: var(--Repeat); }
+  .Conditional { color: var(--Conditional); }
+  
+  .Return { color: var(--Return); }
+  .Exception { color: var(--Exception); }
+  .Type { color: var(--Type); }
+  .Decorator { color: var(--Decorator); }
+  
+  .Integers { color: var(--Integers); }
+  .Floats { color: var(--Floats); }
+  .Strings { color: var(--Strings); }
+  
+  .Comments { color: var(--Comments); }
+  .RegEx { color: var(--RegEx); }
+  .DocString { color: var(--DocString); }
+  .Debug { color: var(--Debug); }
+  .Unique { color: var(--Unique); }
+  .Path { color: var(--Path); }
+  .Url { color: var(--Url); }
+  .Escapes { color: var(--Escapes); }
+  .Character { color: var(--Character); }
+  
+  .Bracket { color: var(--Bracket); }
+  .Delimiter { color: var(--Delimiter); }
+  .Operator { color: var(--Operator); }
+  .Special { color: var(--Special); }
+  
+  .Underlines { color: var(--Underlines); }
+  .Highlights { color: var(--Highlights); }
+  .BG1 { color: var(--BG1) }
+  .BG2 { color: var(--BG2) }
+  .Border { color: var(--Border) }
+  .Header { color: var(--Header) }
+  .DiffAdd { color: var(--DiffAdd) }
+  .DiffRem { color: var(--DiffRem) }
+  .DiffMod { color: var(--DiffMod) }
 
   #backToTop {
     position: fixed;
@@ -166,7 +156,7 @@
           "--" + label.innerText.trim(),
           colorPicker.value
         )
-        if (!label.innerText.trim() == "BG") {
+        if (label.innerText.trim() !== "BG2") {
           label.style.color = colorPicker.value
         }
       })
@@ -178,6 +168,7 @@
     }
     container.appendChild(section)
   }
+  // in an effort to ensure BG2 is always readable
   document.getElementById("navbar").childNodes[7].childNodes[4].style.color = "var(--BG1)"
 </script>
 
@@ -204,87 +195,81 @@
 <h3 style="position: sticky; top: 0; background: var(--Header);">header</h3>
 
 <pre>
-<span class="doc">
+<span class="DocString">
 //! This module demonstrates many Rust concepts in one snippet!
 // This header can be considered a docstring.
 // For the record.
 </span>
 
-<span class="comment">// Import / Namespace</span>
-<span class="keyword">use</span> <span class="namespace">std::collections::HashMap</span>;
-<span class="keyword">use</span> <span class="namespace">regex::Regex</span>;
+<span class="Comments">// Import / Namespace</span>
+<span class="Import">use</span> <span class="Namespace">std::collections::HashMap</span><span class="Delimiter">;</span>
+<span class="Import">use</span> <span class="Namespace">regex::Regex</span><span class="Delimiter">;</span>
 
-<span class="comment">// Constant</span>
-<span class="keyword">const</span> <span class="member">PI</span>: <span class="type">f64</span> = <span class="number">3.1415926535</span>;
+<span class="Comments">// Constant</span>
+<span class="Decorator">const</span> <span class="Constant">PI</span><span class="Delimiter">:</span> <span class="Type">f64</span>
+<span class="Operator">=</span> <span class="Floats">3.1415926535</span><span class="Delimiter">;</span>
 
-<span class="comment">// Type / Modifier</span>
-<span class="keyword">pub struct</span> <span class="type">Circle</span> {
-    <span class="comment">// Member Variable / Property</span>
-    <span class="member">radius</span>: <span class="type">f64</span>,
-}
+<span class="Comments">// Type / Modifier</span>
+<span class="Decorator">pub</span> <span class="Type">struct</span> <span class="Type">Circle</span> <span class="Bracket">{</span>
+    <span class="Comments">// Member Variable / Property</span>
+    <span class="Member">radius</span><span class="Delimiter">:</span> <span class="Type">f64</span><span class="Delimiter">,</span>
+<span class="Bracket">}</span>
 
-<span class="keyword">impl</span> <span class="type">Circle</span> {
-    <span class="comment">// Function with Parameter Variable</span>
-    <span class="keyword">pub fn</span> <span class="function">new</span>(<span class="variable">radius</span>: <span class="type">f64</span>) -> <span class="type">Circle</span> {
-        <span class="keyword">return</span> <span class="type">Circle</span> { <span class="member">radius</span> };
-    }
+<span class="Decorator">impl</span> <span class="Type">Circle</span> <span class="Bracket">{</span>
+    <span class="Comments">// Function with Parameter Variable</span>
+    <span class="Decorator">pub</span> <span class="Function">fn</span> <span class="Function">new</span>
+    <span class="Bracket">(</span><span class="Parameter">radius</span><span class="Delimiter">:</span> <span class="Type">f64</span><span class="Bracket">)</span>
+    <span class="Operator">-&gt;</span> <span class="Type">Circle</span> <span class="Bracket">{</span>
+        <span class="Return">return</span> <span class="Type">Circle</span>
+        <span class="Bracket">{</span> <span class="Member">radius</span> <span class="Bracket">}</span><span class="Delimiter">;</span>
+    <span class="Bracket">}</span>
 
-    <span class="keyword">pub fn</span> <span class="function">area</span>(&self) -> <span class="type">f64</span> {
-        <span class="member">PI</span> <span class="operator">*</span> self.<span class="member">radius</span> <span class="operator">*</span> self.<span class="member">radius</span>
-    }
-}
+    <span class="Decorator">pub</span> <span class="Function">fn</span> <span class="Function">area</span>
+    <span class="Bracket">(</span><span class="Parameter">&self</span><span class="Bracket">)</span>
+    <span class="Operator">-&gt;</span> <span class="Type">f64</span> <span class="Bracket">{</span>
+        <span class="Constant">PI</span>
+        <span class="Operator">*</span> self<span class="Delimiter">.</span><span class="Member">radius</span>
+        <span class="Operator">*</span> self<span class="Delimiter">.</span><span class="Member">radius</span>
+    <span class="Bracket">}</span>
+<span class="Bracket">}</span>
 
-<span class="comment">// Macro</span>
-<span class="keyword">macro_rules!</span> <span class="macro">greet</span> {
-    ($name:expr) => {
-        println!(<span class="string">"Hello, {}!"</span>, $name);
-    };
-}
+<span class="Comments">// Macro</span>
+<span class="Macro">macro_rules!</span> <span class="Macro">greet</span> <span class="Bracket">{</span>
+    <span class="Bracket">(</span>$name<span class="Delimiter">:</span>expr<span class="Bracket">)</span>
+    <span class="Operator">=&gt;</span> <span class="Bracket">{</span>
+        println!<span class="Bracket">(</span><span class="Strings">"Hello, {}!"</span><span class="Delimiter">,</span> $name<span class="Bracket">)</span><span class="Delimiter">;</span>
+    <span class="Bracket">}</span><span class="Delimiter">;</span>
+<span class="Bracket">}</span>
 
-<span class="keyword">fn</span> <span class="function">main</span>() -> <span class="type">Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt;</span> {
-    <span class="comment">// Variable</span>
-    <span class="keyword">let</span> <span class="variable">name</span> = <span class="string">"Rustacean"</span>;
-    <span class="keyword">let</span> <span class="variable">int_val</span>: <span class="type">i32</span> = <span class="number">42</span>;
-    <span class="keyword">let</span> <span class="variable">float_val</span>: <span class="type">f64</span> = <span class="number">3.14</span>;
-    <span class="keyword">let</span> <span class="variable">escaped_str</span> = <span class="string">"Hello\nWorld\t!"</span>;
-    <span class="keyword">let</span> <span class="variable">ch</span>: <span class="type">char</span> = <span class="string">'R'</span>;
-    <span class="keyword">let</span> <span class="special">special</span> = <span class="string">"@#$%^&*"</span>;
-    <span class="keyword">let</span> <span class="variable">url</span> = <span class="string">"https://www.rust-lang.org"</span>;
-    <span class="keyword">let</span> <span class="variable">path</span> = <span class="string">"/usr/local/bin"</span>;
+<span class="Function">fn</span> <span class="Function">main</span><span class="Bracket">()</span>
+<span class="Operator">-&gt;</span>
+<span class="Type">Result</span>
+<span class="Bracket">&lt;</span><span class="Bracket">()</span><span class="Delimiter">,</span> <span class="Type">Box</span>
+<span class="Bracket">&lt;</span>dyn <span class="Namespace">std::error::Error</span><span class="Bracket">&gt;&gt;</span>
+<span class="Bracket">{</span>
 
-    println!(<span class="string">"Debug info: {:?}"</span>, (<span class="variable">name</span>, <span class="variable">int_val</span>, <span class="variable">float_val</span>, <span class="variable">escaped_str</span>, <span class="variable">ch</span>));
+    <span class="Comments">// Variable</span>
+    <span class="Decorator">let</span> <span class="Parameter">name</span>
+    <span class="Operator">=</span> <span class="Strings">"Rustacean"</span><span class="Delimiter">;</span>
 
-    greet!(<span class="variable">name</span>);
+    <span class="Decorator">let</span> <span class="Parameter">int_val</span><span class="Delimiter">:</span>
+    <span class="Type">i32</span> <span class="Operator">=</span> <span class="Integers">42</span><span class="Delimiter">;</span>
 
-    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">0</span>.. <span class="number">3</span> {
-        println!(<span class="string">"Repeat count: {}"</span>, <span class="variable">i</span>);
-    }
+    <span class="Decorator">let</span> <span class="Parameter">float_val</span><span class="Delimiter">:</span>
+    <span class="Type">f64</span> <span class="Operator">=</span> <span class="Floats">3.14</span><span class="Delimiter">;</span>
 
-    <span class="keyword">if</span> <span class="variable">int_val</span> <span class="operator">&gt;</span> <span class="number">40</span> {
-        println!(<span class="string">"int_val is greater than 40"</span>);
-    } <span class="keyword">else</span> {
-        println!(<span class="string">"int_val is 40 or less"</span>);
-    }
+    <span class="Decorator">let</span> <span class="Parameter">escaped_str</span>
+    <span class="Operator">=</span> <span class="Strings">"Hello\nWorld\t!"</span><span class="Delimiter">;</span>
 
-    <span class="keyword">let</span> <span class="variable">re</span> = Regex::new(<span class="regex">r"^\w+://[\w.-]+$"</span>)?;
-    <span class="keyword">if</span> <span class="variable">re</span>.is_match(<span class="variable">url</span>) {
-        println!(<span class="string">"Valid URL detected!"</span>);
-    }
+    <span class="Decorator">let</span> <span class="Parameter">url</span>
+    <span class="Operator">=</span> <span class="Strings">"https://www.rust-lang.org"</span><span class="Delimiter">;</span>
 
-    <span class="keyword">let mut</span> <span class="variable">map</span>: HashMap&lt;<span class="type">String</span>, <span class="type">i32</span>&gt; = HashMap::new();
-    <span class="variable">map</span>.insert(<span class="string">"one"</span>.to_string(), <span class="number">1</span>);
+    <span class="Decorator">let</span> <span class="Parameter">re</span>
+    <span class="Operator">=</span> <span class="Namespace">Regex</span><span class="Delimiter">.</span>new
+    <span class="Bracket">(</span><span class="RegEx">r"^\w+://[\w.-]+$"</span><span class="Bracket">)</span><span class="Delimiter">;</span>
 
-    println!(<span class="string">"*** Highlighted: {} ***"</span>, <span class="variable">name</span>);
-    println!(<span class="string">"--- Underlined: {} ---"</span>, <span class="variable">name</span>);
-
-    <span class="keyword">let</span> <span class="variable">array</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
-    <span class="keyword">let</span> <span class="variable">tuple</span> = (<span class="number">1</span>, <span class="string">"two"</span>);
-    <span class="keyword">let</span> <span class="variable">sum</span> = <span class="variable">array</span>[<span class="number">0</span>] <span class="operator">+</span> <span class="variable">int_val</span>;
-
-    println!(<span class="string">"Diff:\n- old value: {}\n+ new value: {}"</span>, <span class="number">40</span>, <span class="variable">int_val</span>);
-
-    <span class="keyword">return</span> Ok(());
-}
+    <span class="Return">return</span> Ok<span class="Bracket">(</span><span class="Bracket">()</span><span class="Bracket">)</span><span class="Delimiter">;</span>
+<span class="Bracket">}</span>
 </pre>
 
 </body>
