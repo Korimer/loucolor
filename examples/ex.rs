@@ -1,5 +1,3 @@
-//! This module demonstrates many Rust concepts in one snippet
-
 // Import / Namespace
 use std::collections::HashMap;
 use regex::Regex;
@@ -7,18 +5,31 @@ use regex::Regex;
 // Constant
 const PI: f64 = 3.1415926535;
 
-// Type / Modifier
+/// Pub is a Modifier, struct is a Type
 pub struct Circle {
-    // Member Variable / Property
     radius: f64,
+}
+pub struct Square {
+    radius: f64,
+}
+pub struct Triangle {
+    side1: f64,
+    side2: f64,
+    side3: f64,
+}
+pub enum Shape {
+    Circle(Circle),
+    Square(Square),
+    Triangle(Triangle),
 }
 
 impl Circle {
-    // Function with Parameter Variable
+    // Radius here is a parameter
     pub fn new(radius: f64) -> Circle {
         return Circle { radius };
     }
-
+    
+    //
     pub fn area(&self) -> f64 {
         PI * self.radius * self.radius
     }
