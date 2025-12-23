@@ -3,12 +3,13 @@
 //for info on rust itself.
 
 // Import / Namespace
-use std::{collections::HashMap, env};
+use std::{collections::HashMap, env, hash::Hash};
 use regex::Regex;
 
+// Peproc
+#[allow(clippy::approx_constant)]
 // Constant
 const PI: f64 = 3.1415926535;
-
 /// Pub is a Modifier, struct is a Type
 pub struct Circle {
     radius: f64,
@@ -81,81 +82,88 @@ const DEFAULT_NAME: &str = "Felix";
 
 fn formalities() {
     let args: Vec<String> = env::args().collect();
-    hello();
-    greet(args);
+    let steps_in_formalities: 
+        [for<'a> fn(&'a std::vec::Vec<std::string::String>); 4] = 
+    [
+        hello,
+        greet,
+        is_url,
+        count
+    ];
+    let stepnames = HashMap::from([
+        (1, "one"),
+        (2, "two"),
+        (3, "three"),
+        (4, "four")
+    ]);
+    let mut i = 0usize;
+    for step in steps_in_formalities {
+        step(&args);
+        i+=1;
+        println!("just completed step {}!",stepnames.get(&i).unwrap());
+    }
 }
 
-// Macro
 macro_rules! greet {
     ($name:expr) => {
         println!("Hello, {}!", $name);
     };
 }
 
-fn hello() {
+fn hello(_args: &Vec<String>) {
     let escaped_str = "Hello\t World";
     let bang: char = '!';
     let newline: char = '\n';
     print!("my standard pulse is: {escaped_str}{bang}{bang}{bang}{newline}")
 }
 
-fn greet(args: Vec<String>) {
+fn greet(args: &Vec<String>) {
     greet!(
         get_param(args, "name")
             .unwrap_or(DEFAULT_NAME.to_string())
     );
 }
 
-fn get_param(args: Vec<String>,to_get: &str) -> Option<String> {
+fn get_param(args: &Vec<String>,to_get: &str) -> Option<String> {
     args
         .iter()
         .position(|s| *s == "-".to_string() + to_get)
-        .and_then(|pos| args.get(pos))
+        .and_then(|pos| args.get(pos+1))
         .map(|name| name.to_string())
 }
 
-fn get_shape(args: Vec<String>) -> Option<String> {
+fn get_shape(args: &Vec<String>) {
     let theshape = get_param(args, "shape").unwrap_or("".to_string());
     let regex = Regex::new("(circle|square|triangle)").unwrap();
-    for (_, [shapetype]) in regex.captures(&theshape).map(|c| c.extract()) {
-        return Some(shapetype.to_string());
+    if let Some(capture) = regex.captures(&theshape) {
+        println!("The shape is... {}",capture.get(1).unwrap().as_str())
     }
-    return None
+}
+
+fn is_url(args: &Vec<String>) {
+    let url = get_param(args, "url").unwrap_or("".to_string());
+    let re = Regex::new(r"^\w+://[\w.-]+$").unwrap();
+    if re.is_match(&url) {println!("is a url!");}
+}
+
+fn count(args: &Vec<String>) {
+    let num = get_param(args, "num").and_then(|n| n.parse().ok()).unwrap_or(-1isize);
+    if num < 0 {return;}
+    println!("Counting up to {num}:");
+    for i in 0..(num) {print!(" {i}");}
+    println!("!\nJob done.");
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     
-    // Variable
+    // unused variables
     let int_val: i32 = 42;
-    let float_val: f64 = 3.14;
+    let float_val: f64 = 3.15;
     let path = "/usr/local/bin";
 
-    for i in 0.. 3 {
-        println!("Repeat count: {i}");
-    }
-
-    if int_val > 40 {
-        println!("int_val is greater than 40");
-    } else {
-        println!("int_val is 40 or less");
-    }
-
-    let re = Regex::new(r"^\w+://[\w.-]+$")?;
-    if re.is_match(url) {
-        println!("Valid URL detected!");
-    }
-
-    let mut map: HashMap<String, i32> = HashMap::new();
-    map.insert("one".to_string(), 1);
-
-    println!("*** Highlighted: {} ***", name);
-    println!("--- Underlined: {} ---", name);
-
-    let array = [1, 2, 3];
-    let tuple = (1, "two");
-    let sum = array[0] + int_val;
+    formalities();
 
     println!("Diff:\n- old value: {}\n+ new value: {}", 40, int_val);
 
-    return Ok(());
+    Ok(())
 }

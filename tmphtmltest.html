@@ -1,0 +1,134 @@
+<pre><code>
+<span class="Comments">//Hello, This is my rust program!!! visit</span>
+<span class="Comments">// <span class="Url">https://www.rust-lang.org</span></span>
+<span class="Comments">//for info on rust itself.</span>
+
+<span class="Import">use</span>
+<span class="Namespace">std</span><span class="Operator">::</span><span class="Bracket">{</span>
+  <span class="Namespace">collections</span><span class="Operator">::</span><span class="Type">HashMap</span>,
+  <span class="Namespace">env</span>,
+  <span class="Namespace">hash</span><span class="Operator">::</span><span class="Type">Hash</span>
+<span class="Bracket">}</span><span class="Delimiter">;</span>
+
+<span class="Import">use</span>
+<span class="Namespace">regex</span><span class="Operator">::</span><span class="Type">Regex</span><span class="Delimiter">;</span>
+
+<span class="Decorator">#[allow</span><span class="Bracket">(</span>
+<span class="Namespace">clippy</span><span class="Operator">::</span><span class="Member">approx_constant</span>
+<span class="Bracket">)</span><span class="Decorator">]</span>
+
+<span class="Modifier">const</span>
+<span class="Constant">PI</span><span class="Delimiter">:</span>
+<span class="Type">f64</span>
+<span class="Operator">=</span>
+<span class="Floats">3.1415926535</span><span class="Delimiter">;</span>
+
+<span class="DocString">/// Pub is a Modifier, struct is a Type</span>
+<span class="Modifier">pub</span> <span class="Type">struct</span> <span class="Type">Circle</span>
+<span class="Bracket">{</span>
+  <span class="Member">radius</span><span class="Delimiter">:</span> <span class="Type">f64</span>,
+<span class="Bracket">}</span>
+
+<span class="Modifier">pub</span> <span class="Type">struct</span> <span class="Type">Square</span>
+<span class="Bracket">{</span>
+  <span class="Member">side_length</span><span class="Delimiter">:</span> <span class="Type">f64</span>,
+<span class="Bracket">}</span>
+
+<span class="Modifier">pub</span> <span class="Type">struct</span> <span class="Type">Triangle</span>
+<span class="Bracket">{</span>
+  <span class="Member">side1</span><span class="Delimiter">:</span> <span class="Type">f64</span>,
+  <span class="Member">side2</span><span class="Delimiter">:</span> <span class="Type">f64</span>,
+  <span class="Member">side3</span><span class="Delimiter">:</span> <span class="Type">f64</span>,
+<span class="Bracket">}</span>
+
+<span class="Modifier">pub</span> <span class="Type">enum</span> <span class="Type">Shape</span>
+<span class="Bracket">{</span>
+  <span class="Type">Circle</span><span class="Bracket">(</span><span class="Type">Circle</span><span class="Bracket">)</span>,
+  <span class="Type">Square</span><span class="Bracket">(</span><span class="Type">Square</span><span class="Bracket">)</span>,
+  <span class="Type">Triangle</span><span class="Bracket">(</span><span class="Type">Triangle</span><span class="Bracket">)</span>,
+<span class="Bracket">}</span>
+
+<span class="Type">trait</span> <span class="Type">SimpleShape</span>
+<span class="Bracket">{</span>
+  <span class="Function">fn</span>
+  <span class="Function">area</span><span class="Bracket">(</span>
+    <span class="Operator">&amp;</span><span class="Variable">self</span>
+  <span class="Bracket">)</span>
+  <span class="Operator">-&gt;</span> <span class="Type">f64</span><span class="Delimiter">;</span>
+<span class="Bracket">}</span>
+
+<span class="Type">impl</span> <span class="Type">SimpleShape</span> <span class="Keyword">for</span> <span class="Type">Circle</span>
+<span class="Bracket">{</span>
+  <span class="Function">fn</span> <span class="Function">area</span><span class="Bracket">(</span>
+    <span class="Operator">&amp;</span><span class="Variable">self</span>
+  <span class="Bracket">)</span>
+  <span class="Operator">-&gt;</span> <span class="Type">f64</span>
+  <span class="Bracket">{</span>
+    <span class="Constant">PI</span>
+    <span class="Operator">*</span>
+    <span class="Variable">self</span><span class="Delimiter">.</span><span class="Member">radius</span>
+    <span class="Operator">*</span>
+    <span class="Variable">self</span><span class="Delimiter">.</span><span class="Member">radius</span>
+  <span class="Bracket">}</span>
+<span class="Bracket">}</span>
+
+<span class="Function">fn</span> <span class="Function">formalities</span><span class="Bracket">(</span><span class="Bracket">)</span>
+<span class="Bracket">{</span>
+  <span class="Variable">let</span>
+  <span class="Member">args</span><span class="Delimiter">:</span>
+  <span class="Type">Vec</span><span class="Bracket">&lt;</span><span class="Type">String</span><span class="Bracket">&gt;</span>
+  <span class="Operator">=</span>
+  <span class="Namespace">env</span><span class="Operator">::</span><span class="Function">args</span><span class="Bracket">(</span><span class="Bracket">)</span>
+  <span class="Delimiter">.</span><span class="Function">collect</span><span class="Bracket">(</span><span class="Bracket">)</span><span class="Delimiter">;</span>
+
+  <span class="Repeat">for</span>
+  <span class="Member">step</span>
+  <span class="Keyword">in</span>
+  <span class="Member">steps_in_formalities</span>
+  <span class="Bracket">{</span>
+    <span class="Function">step</span><span class="Bracket">(</span>
+      <span class="Operator">&amp;</span><span class="Member">args</span>
+    <span class="Bracket">)</span><span class="Delimiter">;</span>
+  <span class="Bracket">}</span>
+<span class="Bracket">}</span>
+
+<span class="Function">fn</span> <span class="Function">main</span><span class="Bracket">(</span><span class="Bracket">)</span>
+<span class="Operator">-&gt;</span>
+<span class="Type">Result</span><span class="Bracket">&lt;</span>
+  <span class="Bracket">(</span><span class="Bracket">)</span>,
+  <span class="Type">Box</span><span class="Bracket">&lt;</span>
+    <span class="Type">dyn</span>
+    <span class="Namespace">std</span><span class="Operator">::</span>
+    <span class="Namespace">error</span><span class="Operator">::</span>
+    <span class="Type">Error</span>
+  <span class="Bracket">&gt;</span>
+<span class="Bracket">&gt;</span>
+<span class="Bracket">{</span>
+
+  <span class="Comments">// unused variables</span>
+  <span class="Variable">let</span>
+  <span class="Member">int_val</span><span class="Delimiter">:</span>
+  <span class="Type">i32</span>
+  <span class="Operator">=</span>
+  <span class="Integers">42</span><span class="Delimiter">;</span>
+
+  <span class="Variable">let</span>
+  <span class="Member">float_val</span><span class="Delimiter">:</span>
+  <span class="Type">f64</span>
+  <span class="Operator">=</span>
+  <span class="Floats">3.15</span><span class="Delimiter">;</span>
+
+  <span class="Variable">let</span>
+  <span class="Member">path</span>
+  <span class="Operator">=</span>
+  <span class="Path">"/usr/local/bin"</span><span class="Delimiter">;</span>
+
+  <span class="Builtin">println!</span><span class="Bracket">(</span>
+    <span class="Strings">"Diff:\n<span class="DiffRem">-</span> old value: {}\n<span class="DiffAdd">+</span> new value: {}"</span>,
+    <span class="Integers">40</span>,
+    <span class="Member">int_val</span>
+  <span class="Bracket">)</span><span class="Delimiter">;</span>
+
+  <span class="Return">Ok</span><span class="Bracket">(</span><span class="Bracket">)</span>
+<span class="Bracket">}</span>
+</code></pre>
