@@ -43,7 +43,7 @@
     --Parameter: #ffffff;
     --Builtin: #ffffff;
     --BG1: #000000;
-    --BG2: #aaaaaa;
+    --BG2: #aaaaaa;document.documentElement.style.getPropertyValue("--Type") 
     --Border: #ffffff;
     --Border2: #ffffff;
     --Header: #ffffff;
@@ -257,7 +257,7 @@
   load.addEventListener("click", () => {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = '.oacf'; // optional, restrict to text files
+    input.accept = '.oacf';
     input.onchange = e => {
       const file = e.target.files[0]
       if (!file) return
