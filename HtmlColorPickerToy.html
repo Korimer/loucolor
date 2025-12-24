@@ -8,6 +8,7 @@
   pre { background: var(--BG1); color:#eee; padding:20px; overflow:auto; }
 
   :root {
+    --Default: #ffffff;
     --Highlights: #ffffff;
     --Underlines: #ffffff;
     --Unique: #ffffff;
@@ -42,7 +43,7 @@
     --Parameter: #ffffff;
     --Builtin: #ffffff;
     --BG1: #000000;
-    --BG2: #ffffff;
+    --BG2: #aaaaaa;
     --Border: #ffffff;
     --Border2: #ffffff;
     --Header: #ffffff;
@@ -52,6 +53,7 @@
     --HeaderText: #000000;
   }
 
+  .Default { color: var(--Default) }
   .Builtin { color: var(--Builtin); }
   .Parameter { color: var(--Parameter); }
   .Member { color: var(--Member); }
@@ -127,7 +129,7 @@
 
 <script>
   const data = {
-    "Variables": ["Builtin", "Parameter", "Member", "Constant"],
+    "Variables": ["Default","Builtin", "Parameter", "Member", "Constant"],
     "Declarations": ["Import", "Namespace", "Type", "Function", "Macro", "Repeat", "Conditional"],
     "Formalities": ["Return", "Exception", "Type", "Decorator"],
     "Literals": ["Integers", "Floats"],
@@ -137,10 +139,14 @@
   };
 
   function changeColor(varToChange, color) {
-        document.documentElement.style.setProperty(
-          "--" + varToChange,
-          color
-        )
+    document.documentElement.style.setProperty(
+      "--" + varToChange,
+      color
+    )
+    let label = document.getElementById(varToChange)
+    if (label.innerText.trim() !== "BG2") {
+      label.style.color = color
+    }
   }
 
   const container = document.getElementById("navbar")
@@ -160,6 +166,7 @@
         container.style.borderColor = "var(--Border)"
         container.style.backgroundColor = "var(--BG2)"
       const label = document.createElement("label")
+        label.id = subitem
         label.style.cursor = "pointer"
         label.style.display = "block"
         label.style.textAlign = "center"
@@ -173,9 +180,6 @@
 
       colorPicker.addEventListener("input", () => {
         changeColor(label.innerText.trim(), colorPicker.value)
-        if (label.innerText.trim() !== "BG2") {
-          label.style.color = colorPicker.value
-        }
       })
 
       container.appendChild(label)
@@ -210,6 +214,59 @@
       behavior: "smooth"
     });
   });
+</script>
+
+<br>
+<div id="savestates">
+  <button id="savebtn" style="font-size: 20px; background-color: var(--BG2); padding: 10px 70px; border: 2px solid var(--Border2)">save</button>
+  <button id="loadbtn" style="font-size: 20px; background-color: var(--BG2); padding: 10px 70px; border: 2px solid var(--Border2)">load</button>
+</div>
+
+<script> 
+  let save = document.getElementById("savebtn")
+  save.addEventListener("click", () => {
+    let savedvalues = ""
+    for (const [title,subitems] of Object.entries(data)) {
+      for (const subitem of subitems) {
+        let color = document.documentElement.style.getPropertyValue("--" + subitem)
+        if (color === "") continue
+        savedvalues += subitem + ":" + color + "\n"
+      }
+    }
+    const blob = new Blob([savedvalues])
+    const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'AwesomeColorScheme.oacf';
+      document.body.appendChild(link);
+      link.click();
+    console.log(savedvalues)
+  })
+
+  let load = document.getElementById("loadbtn")
+  load.addEventListener("click", () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.oacf'; // optional, restrict to text files
+    input.onchange = e => {
+      const file = e.target.files[0]
+      if (!file) return
+
+      const reader = new FileReader()
+      
+      reader.onload = event => {
+            const content = event.target.result;
+            const lines = content.split("\n");
+            for (line of lines) {
+              if (line === "") continue
+              let [item, color] = line.split(":")
+              changeColor(item,color)
+            }
+        };
+      
+      reader.readAsText(file)
+    }
+    input.click()
+  })
 </script>
 
 <h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 1px solid var(--Border)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
