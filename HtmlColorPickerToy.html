@@ -181,6 +181,17 @@
       colorPicker.addEventListener("input", () => {
         changeColor(label.innerText.trim(), colorPicker.value)
       })
+      hexInput.addEventListener("keyup", function(event) {
+        event.preventDefault()
+        if (event.keyCode === 13) {
+          let hexText = hexInput.value
+          let hexcode = ""
+          if (hexText.startsWith("#")) {hexcode = hexText}
+          else {hexcode = "#" + hexText}
+          changeColor(label.innerText.trim(),hexcode)
+          hexInput.value = ""
+        }
+      })
 
       container.appendChild(label)
       label.appendChild(colorPicker)
@@ -269,7 +280,7 @@
   })
 </script>
 
-<h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 1px solid var(--Border)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
+<h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 3px solid var(--Border)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
 
 <pre><code>
 <span style="color: var(--Comments)">//Hello, This is my rust program!!! visit</span>
