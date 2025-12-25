@@ -8,104 +8,11 @@
   pre { background: var(--BG1); color:#eee; padding:20px; overflow:auto; }
 
   :root {
-    --Default: #ffffff;
-    --Highlights: #ffffff;
-    --Underlines: #ffffff;
-    --Unique: #ffffff;
-    --Operator: #ffffff;
-    --Delimiter: #ffffff;
-    --Bracket: #ffffff;
-    --Character: #ffffff;
-    --Escapes: #ffffff;
-    --Url: #ffffff;
-    --Path: #ffffff;
-    --Special: #ffffff;
-    --Debug: #ffffff;
-    --DocString: #ffffff;
-    --RegEx: #ffffff;
-    --Strings: #ffffff;
-    --Comments: #ffffff;
-    --Floats: #ffffff;
-    --Integers: #ffffff;
-    --Decorator: #ffffff;
-    --Modifier: #ffffff;
-    --Keyword: #ffffff;
-    --DecType: #ffffff;
-    --Exception: #ffffff;
-    --Return: #ffffff;
-    --Conditional: #ffffff;
-    --Repeat: #ffffff;
-    --Macro: #ffffff;
-    --Function: #ffffff;
-    --FormType: #ffffff;
-    --Namespace: #ffffff;
-    --Import: #ffffff;
-    --Constant: #ffffff;
-    --Member: #ffffff;
-    --Parameter: #ffffff;
-    --Builtin: #ffffff;
     --BG1: #000000;
     --BG2: #aaaaaa;
     --Border: #ffffff;
     --Border2: #ffffff;
-    --Header: #ffffff;
-    --DiffAdd: #ffffff;
-    --DiffMod: #ffffff;
-    --DiffRem: #ffffff;
-    --HeaderText: #000000;
   }
-
-  .Default { color: var(--Default) }
-  .Builtin { color: var(--Builtin); }
-  .Parameter { color: var(--Parameter); }
-  .Member { color: var(--Member); }
-  .Constant { color: var(--Constant); }
-  
-  .Import { color: var(--Import); }
-  .Namespace { color: var(--Namespace); }
-  .DecType { color: var(--DecType); }
-  .Function { color: var(--Function); }
-  .Macro { color: var(--Macro); }
-  .Repeat { color: var(--Repeat); }
-  .Conditional { color: var(--Conditional); }
-  
-  .Return { color: var(--Return); }
-  .Exception { color: var(--Exception); }
-  .FormType { color: var(--FormType); }
-  .Decorator { color: var(--Decorator); }
-  .Modifier { color: var(--Modifier); }
-  .Keyword { color: var(--Keyword); }
-  
-  .Integers { color: var(--Integers); }
-  .Floats { color: var(--Floats); }
-  .Strings { color: var(--Strings); }
-  
-  .Comments { color: var(--Comments); }
-  .RegEx { color: var(--RegEx); }
-  .DocString { color: var(--DocString); }
-  .Debug { color: var(--Debug); }
-  .Unique { color: var(--Unique); }
-  .Path { color: var(--Path); }
-  .Url { color: var(--Url); }
-  .Escapes { color: var(--Escapes); }
-  .Character { color: var(--Character); }
-  
-  .Bracket { color: var(--Bracket); }
-  .Delimiter { color: var(--Delimiter); }
-  .Operator { color: var(--Operator); }
-  .Special { color: var(--Special); }
-  
-  .Underlines { color: var(--Underlines); }
-  .Highlights { color: var(--Highlights); }
-  .BG1 { color: var(--BG1) }
-  .BG2 { color: var(--BG2) }
-  .Border { color: var(--Border) }
-  .Border2 { color: var(--Border2) }
-  .Header { color: var(--Header) }
-  .DiffAdd { color: var(--DiffAdd) }
-  .DiffRem { color: var(--DiffRem) }
-  .DiffMod { color: var(--DiffMod) }
-  .HeaderText { color: var(--HeaderText) }
 
   #backToTop {
     position: fixed;
@@ -139,7 +46,8 @@
     "Literals": ["Integers", "Floats"],
     "RawText": ["Comments","Strings","RegEx","DocString","Debug","Unique","Path","Url","Escapes","Character"],
     "Punctuation": ["Bracket","Delimiter","Operator","Special"],
-    "General": ["Underlines","Highlights","BG1","BG2","Border","Border2","Header","HeaderText","DiffAdd","DiffRem", "DiffMod"]
+    "General": ["BG1","BG2","Border","Border2","Header","HeaderText"],
+    "External": ["DiffAdd","DiffRem", "DiffMod", "Highlight"]
   };
 
   function changeColor(varToChange, color) {
