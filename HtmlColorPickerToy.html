@@ -21,7 +21,7 @@
     right: 20px;
     width: 50px;
     height: 50px;
-    border: 5px solid var(--Border2);
+    border: 3px solid var(--Border2);
     border-radius: 50%;
     background-color: var(--BG2);
     color: var(--ConsoleText);
@@ -34,7 +34,7 @@
 </style>
 </head>
 
-<body>
+<body style="background-color: var(--BG2)">
 
 <div id="navbar" style="display:flex; gap:10px;">
 </div>
@@ -42,13 +42,13 @@
 <script>
   const data = {
     "Variables": ["Default","Builtin", "Parameter", "Member", "Constant"],
-    "Declarations": ["Import", "Namespace", "DecType", "Function", "Macro", "Repeat", "Conditional"],
+    "Declarations": ["Import", "Namespace", "DecType", "Function", "Macro", "Logical"],
     "Formalities": ["Return", "Exception", "FormType", "Decorator", "Modifier", "Keyword"],
     "Literals": ["Integers", "Floats"],
-    "RawText": ["Comments","Strings","DocString","Debug","Special","Escapes","Character"],
+    "RawText": ["Comments","Strings","DocString","Special","Escapes","Character"],
     "Punctuation": ["Bracket","Delimiter","Operator"],
     "General": ["BG1","BG2","Border","Border2","Header","HeaderText"],
-    "External": ["DiffAdd","DiffRem", "DiffMod", "Highlight"]
+    "External": ["RedBg","YellowBg", "GreenBg", "HighlightedBg","DefaultRed","DefaultYellow"]
   };
 
   function changeColor(varToChange, color) {
@@ -71,6 +71,7 @@
       section.style.borderColor = "var(--Border2)"
     const sectionTitle = document.createElement("h2")
       sectionTitle.innerText = title
+      sectionTitle.style.textAlign = "center"
       section.appendChild(sectionTitle)
     for (const subitem of subitems) {
       const container = document.createElement("div")
@@ -193,9 +194,9 @@
   })
 </script>
 
-<h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 3px solid var(--Border)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
+<h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 3px solid var(--Border2)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
 
-<pre><code>
+<pre style="border: 3px solid var(--Border)"><code>
 <span style="color: var(--DocString)">///Hello, This is my rust program!!! visit</span>
 <span style="color: var(--DocString)">/// <span style="color: var(--Special)">https://www.rust-lang.org</span></span>
 <span style="color: var(--DocString)">///for info on rust itself.</span>
@@ -266,7 +267,7 @@
     <span style="color: var(--Comments)">// "A List of functions that accept a singl Vector (Vec) of Strings as an argument"</span>
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">steps_in_formalities</span><span style="color: var(--Delimiter)">:</span>
         <span style="color: var(--Bracket)">[</span>
-            <span style="color: var(--Keyword)">for</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Decorator)">'a</span><span style="color: var(--Bracket)">&gt;</span>
+            <span style="color: var(--Logical)">for</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Decorator)">'a</span><span style="color: var(--Bracket)">&gt;</span>
             <span style="color: var(--Keyword)">fn</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Decorator)">'a</span>
             <span style="color: var(--Namespace)">std</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Namespace)">vec</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">Vec</span>
             <span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Namespace)">std</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Namespace)">string</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">String</span><span style="color: var(--Bracket)">&gt;</span>
@@ -291,7 +292,7 @@
 
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Keyword)">mut</span> <span style="color: var(--Default)">i</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Integers)">0</span><span style="color: var(--DecType)">usize</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Keyword)">for</span> <span style="color: var(--Default)">step</span> <span style="color: var(--Keyword)">in</span> <span style="color: var(--Default)">steps_in_formalities</span> <span style="color: var(--Bracket)">{</span>
+    <span style="color: var(--Logical)">for</span> <span style="color: var(--Default)">step</span> <span style="color: var(--Keyword)">in</span> <span style="color: var(--Default)">steps_in_formalities</span> <span style="color: var(--Bracket)">{</span>
         <span style="color: var(--Default)">step</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">args</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
         <span style="color: var(--Default)">i</span> <span style="color: var(--Operator)">+=</span> <span style="color: var(--Integers)">1</span><span style="color: var(--Delimiter)">;</span>
         <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
@@ -350,6 +351,8 @@
 <span style="color: var(--Bracket)">)</span> <span style="color: var(--Operator)">-&gt;</span>
 <span style="color: var(--DecType)">Option</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--DecType)">String</span><span style="color: var(--Bracket)">&gt;</span>
 <span style="color: var(--Bracket)">{</span>
+
+  <span style="color: var(--Return)">return</span>
     <span style="color: var(--Default)">args</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">iter</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">position</span><span style="color: var(--Bracket)">(</span>
@@ -389,7 +392,7 @@
         <span style="color: var(--Bracket)">(</span><span style="color: var(--Special)">"(circle|square|triangle)"</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Keyword)">if</span> <span style="color: var(--Keyword)">let</span>
+    <span style="color: var(--Logical)">if</span> <span style="color: var(--Keyword)">let</span>
         <span style="color: var(--DecType)">Some</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Default)">capture</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Operator)">=</span>
         <span style="color: var(--Default)">regex</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">captures</span>
@@ -422,7 +425,7 @@
         <span style="color: var(--Bracket)">(</span><span style="color: var(--Special)">r"^\w+://[\w.-]+$"</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Keyword)">if</span>
+    <span style="color: var(--Logical)">if</span>
         <span style="color: var(--Default)">re</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">is_match</span>
         <span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">url</span><span style="color: var(--Bracket)">)</span>
     <span style="color: var(--Bracket)">{</span>
@@ -448,15 +451,15 @@
             <span style="color: var(--Operator)">-</span><span style="color: var(--Integers)">1</span><span style="color: var(--DecType)">isize</span>
         <span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Keyword)">if</span> <span style="color: var(--Default)">num</span> <span style="color: var(--Operator)">&lt;</span> <span style="color: var(--Integers)">0</span> <span style="color: var(--Bracket)">{</span>
-        <span style="color: var(--Keyword)">return</span><span style="color: var(--Delimiter)">;</span>
+    <span style="color: var(--Logical)">if</span> <span style="color: var(--Default)">num</span> <span style="color: var(--Operator)">&lt;</span> <span style="color: var(--Integers)">0</span> <span style="color: var(--Bracket)">{</span>
+        <span style="color: var(--Return)">return</span><span style="color: var(--Delimiter)">;</span>
     <span style="color: var(--Bracket)">}</span>
 
     <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
         <span style="color: var(--Strings)">"Counting up to {num}:"</span>
     <span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Keyword)">for</span> <span style="color: var(--Default)">i</span> <span style="color: var(--Keyword)">in</span>
+    <span style="color: var(--Logical)">for</span> <span style="color: var(--Default)">i</span> <span style="color: var(--Keyword)">in</span>
         <span style="color: var(--Integers)">0</span><span style="color: var(--Operator)">..</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Default)">num</span><span style="color: var(--Bracket)">)</span>
     <span style="color: var(--Bracket)">{</span>
         <span style="color: var(--Function)">print</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">" {i}"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
