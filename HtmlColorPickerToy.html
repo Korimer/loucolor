@@ -12,6 +12,7 @@
     --BG2: #aaaaaa;
     --Border: #ffffff;
     --Border2: #ffffff;
+    --Header: #ffffff;
   }
 
   #backToTop {
@@ -44,8 +45,8 @@
     "Declarations": ["Import", "Namespace", "DecType", "Function", "Macro", "Repeat", "Conditional"],
     "Formalities": ["Return", "Exception", "FormType", "Decorator", "Modifier", "Keyword"],
     "Literals": ["Integers", "Floats"],
-    "RawText": ["Comments","Strings","RegEx","DocString","Debug","Unique","Path","Url","Escapes","Character"],
-    "Punctuation": ["Bracket","Delimiter","Operator","Special"],
+    "RawText": ["Comments","Strings","DocString","Debug","Special","Escapes","Character"],
+    "Punctuation": ["Bracket","Delimiter","Operator"],
     "General": ["BG1","BG2","Border","Border2","Header","HeaderText"],
     "External": ["DiffAdd","DiffRem", "DiffMod", "Highlight"]
   };
@@ -195,9 +196,9 @@
 <h3 style="position: sticky; top: 0; background: var(--Header); color: var(--HeaderText); border: 3px solid var(--Border)">Example Rust Code.rs (since this is a header, there could be a lot more than just a filename here.)</h3>
 
 <pre><code>
-<span style="color: var(--Comments)">//Hello, This is my rust program!!! visit</span>
-<span style="color: var(--Comments)">// <span style="color: var(--Url)">https://www.rust-lang.org</span></span>
-<span style="color: var(--Comments)">//for info on rust itself.</span>
+<span style="color: var(--DocString)">///Hello, This is my rust program!!! visit</span>
+<span style="color: var(--DocString)">/// <span style="color: var(--Special)">https://www.rust-lang.org</span></span>
+<span style="color: var(--DocString)">///for info on rust itself.</span>
 
 <span style="color: var(--Comments)">// Import / Namespace</span>
 <span style="color: var(--Import)">use</span> <span style="color: var(--Namespace)">std</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Bracket)">{</span><span style="color: var(--Namespace)">collections</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">HashMap</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Namespace)">env</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Namespace)">hash</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">Hash</span><span style="color: var(--Bracket)">}</span><span style="color: var(--Delimiter)">;</span>
@@ -209,7 +210,7 @@
 <span style="color: var(--Comments)">// Constant</span>
 <span style="color: var(--Keyword)">const</span> <span style="color: var(--Constant)">PI</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Floats)">3.1415926535</span><span style="color: var(--Delimiter)">;</span>
 
-<span style="color: var(--Comments)">/// Pub is a Modifier, struct is a Type</span>
+<span style="color: var(--Comments)">// Pub is a Modifier, struct is a Type</span>
 <span style="color: var(--Modifier)">pub</span> <span style="color: var(--FormType)">struct</span> <span style="color: var(--DecType)">Circle</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Member)">radius</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span><span style="color: var(--Delimiter)">,</span>
 <span style="color: var(--Bracket)">}</span>
@@ -256,11 +257,13 @@
 
 <span style="color: var(--Keyword)">const</span> <span style="color: var(--Constant)">DEFAULT_NAME</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--Operator)">&amp;</span><span style="color: var(--DecType)">str</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Strings)">"Felix"</span><span style="color: var(--Delimiter)">;</span>
 
+<span style="color: var(--DocString)">///General processes necessary for startup.</span>
 <span style="color: var(--Keyword)">fn</span> <span style="color: var(--Function)">formalities</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">args</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">Vec</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--DecType)">String</span><span style="color: var(--Bracket)">&gt;</span> <span style="color: var(--Operator)">=</span>
         <span style="color: var(--Namespace)">env</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Function)">args</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span>
             <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">collect</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
-
+    <span style="color: var(--Comments)">// This is pretty intimidating looking, but this basically just translates to...</span>
+    <span style="color: var(--Comments)">// "A List of functions that accept a singl Vector (Vec) of Strings as an argument"</span>
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">steps_in_formalities</span><span style="color: var(--Delimiter)">:</span>
         <span style="color: var(--Bracket)">[</span>
             <span style="color: var(--Keyword)">for</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Decorator)">'a</span><span style="color: var(--Bracket)">&gt;</span>
@@ -300,6 +303,8 @@
     <span style="color: var(--Bracket)">}</span>
 <span style="color: var(--Bracket)">}</span>
 
+<span style="color: var(--Comments)">// Code that's ran *before* the program is executed.</span>
+<span style="color: var(--Comments)">// ...Is there an artist equivalent to this? Its like downloading a custom brush or smth lol</span>
 <span style="color: var(--Macro)">macro_rules!</span> <span style="color: var(--Macro)">greet</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Bracket)">(</span><span style="color: var(--Parameter)">$name</span><span style="color: var(--Delimiter)">:</span><span style="color: var(--DecType)">expr</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Operator)">=&gt;</span> <span style="color: var(--Bracket)">{</span>
         <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
@@ -317,6 +322,8 @@
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">bang</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">char</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Character)">'!'</span><span style="color: var(--Delimiter)">;</span>
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">newline</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">char</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Character)">'<span style="color: var(--Escapes)">\n</span>'</span><span style="color: var(--Delimiter)">;</span>
 
+    <span style="color: var(--Comments)">// Yeah the {bang} bit could just be replaced by a "!"</span>
+    <span style="color: var(--Comments)">// But having text substitution with a single char demonstrates highlighting better</span>
     <span style="color: var(--Function)">print</span><span style="color: var(--Bracket)">(</span>
         <span style="color: var(--Strings)">"my standard pulse is: {escaped_str}{bang}{bang}{bang}{newline}"</span>
     <span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
@@ -379,7 +386,7 @@
 
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">regex</span> <span style="color: var(--Operator)">=</span>
         <span style="color: var(--DecType)">Regex</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Function)">new</span>
-        <span style="color: var(--Bracket)">(</span><span style="color: var(--RegEx)">"(circle|square|triangle)"</span><span style="color: var(--Bracket)">)</span>
+        <span style="color: var(--Bracket)">(</span><span style="color: var(--Special)">"(circle|square|triangle)"</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--Keyword)">if</span> <span style="color: var(--Keyword)">let</span>
@@ -412,7 +419,7 @@
 
     <span style="color: var(--Keyword)">let</span> <span style="color: var(--Default)">re</span> <span style="color: var(--Operator)">=</span>
         <span style="color: var(--DecType)">Regex</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Function)">new</span>
-        <span style="color: var(--Bracket)">(</span><span style="color: var(--RegEx)">r"^\w+://[\w.-]+$"</span><span style="color: var(--Bracket)">)</span>
+        <span style="color: var(--Bracket)">(</span><span style="color: var(--Special)">r"^\w+://[\w.-]+$"</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--Keyword)">if</span>
