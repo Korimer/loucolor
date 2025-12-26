@@ -205,21 +205,26 @@
 <span style="color: var(--Import)">use</span> <span style="color: var(--Namespace)">std</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Bracket)">{</span><span style="color: var(--Namespace)">collections</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">HashMap</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Namespace)">env</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Namespace)">hash</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">Hash</span><span style="color: var(--Bracket)">}</span><span style="color: var(--Delimiter)">;</span>
 <span style="color: var(--Import)">use</span> <span style="color: var(--Namespace)">regex</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">Regex</span><span style="color: var(--Delimiter)">;</span>
 
-<span style="color: var(--Comments)">// Peproc</span>
-<span style="color: var(--Decorator)">#</span><span style="color: var(--Bracket)">[</span><span style="color: var(--Attribute)">allow</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Namespace)">clippy</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Member)">approx_constant</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">]</span>
+<span style="color: var(--Comments)">// Debug</span>
+<span style="color: var(--Comments)">// ...These are a bit tricky to demonstrate, they can show up basically anywhere</span>
+<span style="color: var(--Comments)">// But they *are* always on thier own line, for what its worth</span>
+<span style="color: var(--Decorator)">#</span><span style="color: var(--Bracket)">[</span><span style="color: var(--Macro)">allow</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Namespace)">clippy</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Member)">approx_constant</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">]</span>
+<span style="color: var(--Comments)">// Also the colors here are actually VERY interchangable, so if one specific color clashes I can just remove it lol</span>
 
 <span style="color: var(--Comments)">// Constant</span>
 <span style="color: var(--Keyword)">const</span> <span style="color: var(--Constant)">PI</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span> <span style="color: var(--Operator)">=</span> <span style="color: var(--Floats)">3.1415926535</span><span style="color: var(--Delimiter)">;</span>
 
-<span style="color: var(--Comments)">// Pub is a Modifier, struct is a Type</span>
+<span style="color: var(--Decorator)">#</span><span style="color: var(--Bracket)">[</span><span style="color: var(--Macro)">derive</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Parameter)">Debug</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">]</span>
 <span style="color: var(--Modifier)">pub</span> <span style="color: var(--FormType)">struct</span> <span style="color: var(--DecType)">Circle</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Member)">radius</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span><span style="color: var(--Delimiter)">,</span>
 <span style="color: var(--Bracket)">}</span>
 
+<span style="color: var(--Decorator)">#</span><span style="color: var(--Bracket)">[</span><span style="color: var(--Macro)">derive</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Parameter)">Clone</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">]</span>
 <span style="color: var(--Modifier)">pub</span> <span style="color: var(--FormType)">struct</span> <span style="color: var(--DecType)">Square</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Member)">side_length</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span><span style="color: var(--Delimiter)">,</span>
 <span style="color: var(--Bracket)">}</span>
 
+<span style="color: var(--Decorator)">#</span><span style="color: var(--Bracket)">[</span><span style="color: var(--Macro)">derive</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Parameter)">PartialEq</span><span style="color: var(--Delimiter)">,</span><span style="color: var(--Parameter)">PartialOrd</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">]</span>
 <span style="color: var(--Modifier)">pub</span> <span style="color: var(--FormType)">struct</span> <span style="color: var(--DecType)">Triangle</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Member)">side1</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span><span style="color: var(--Delimiter)">,</span>
     <span style="color: var(--Member)">side2</span><span style="color: var(--Delimiter)">:</span> <span style="color: var(--DecType)">f64</span><span style="color: var(--Delimiter)">,</span>
@@ -295,7 +300,7 @@
     <span style="color: var(--Logical)">for</span> <span style="color: var(--Default)">step</span> <span style="color: var(--Keyword)">in</span> <span style="color: var(--Default)">steps_in_formalities</span> <span style="color: var(--Bracket)">{</span>
         <span style="color: var(--Default)">step</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">args</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
         <span style="color: var(--Default)">i</span> <span style="color: var(--Operator)">+=</span> <span style="color: var(--Integers)">1</span><span style="color: var(--Delimiter)">;</span>
-        <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
+        <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span>
             <span style="color: var(--Strings)">"just completed step {}!"</span><span style="color: var(--Delimiter)">,</span>
             <span style="color: var(--Default)">stepnames</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">get</span>
                 <span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">i</span><span style="color: var(--Bracket)">)</span>
@@ -308,7 +313,7 @@
 <span style="color: var(--Comments)">// ...Is there an artist equivalent to this? Its like downloading a custom brush or smth lol</span>
 <span style="color: var(--Macro)">macro_rules!</span> <span style="color: var(--Macro)">greet</span> <span style="color: var(--Bracket)">{</span>
     <span style="color: var(--Bracket)">(</span><span style="color: var(--Parameter)">$name</span><span style="color: var(--Delimiter)">:</span><span style="color: var(--DecType)">expr</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Operator)">=&gt;</span> <span style="color: var(--Bracket)">{</span>
-        <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
+        <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span>
             <span style="color: var(--Strings)">"Hello, {}!"</span><span style="color: var(--Delimiter)">,</span>
             <span style="color: var(--Parameter)">$name</span>
         <span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
@@ -325,7 +330,7 @@
 
     <span style="color: var(--Comments)">// Yeah the {bang} bit could just be replaced by a "!"</span>
     <span style="color: var(--Comments)">// But having text substitution with a single char demonstrates highlighting better</span>
-    <span style="color: var(--Function)">print</span><span style="color: var(--Bracket)">(</span>
+    <span style="color: var(--Function)">print!</span><span style="color: var(--Bracket)">(</span>
         <span style="color: var(--Strings)">"my standard pulse is: {escaped_str}{bang}{bang}{bang}{newline}"</span>
     <span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 <span style="color: var(--Bracket)">}</span>
@@ -375,7 +380,7 @@
     <span style="color: var(--Logical)">if</span> <span style="color: var(--Keyword)">let</span> <span style="color: var(--DecType)">Some</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Default)">capture</span><span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Operator)">=</span> <span style="color: var(--Default)">regex</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">captures</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">theshape</span><span style="color: var(--Bracket)">)</span>
     <span style="color: var(--Bracket)">{</span>
-        <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span>
+        <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span>
             <span style="color: var(--Strings)">"The shape is... {}"</span><span style="color: var(--Delimiter)">,</span>
             <span style="color: var(--Default)">capture</span>
                 <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">get</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Integers)">1</span><span style="color: var(--Bracket)">)</span>
@@ -401,7 +406,7 @@
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--Logical)">if</span> <span style="color: var(--Default)">re</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">is_match</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">&amp;</span><span style="color: var(--Default)">url</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Bracket)">{</span>
-        <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"is a url!"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+        <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"is a url!"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
     <span style="color: var(--Bracket)">}</span>
 <span style="color: var(--Bracket)">}</span>
 
@@ -412,19 +417,19 @@
             <span style="color: var(--Strings)">"num"</span>
         <span style="color: var(--Bracket)">)</span>
         <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">and_then</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">|</span><span style="color: var(--Parameter)">n</span><span style="color: var(--Operator)">|</span> <span style="color: var(--Parameter)">n</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">parse</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">ok</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Bracket)">)</span>
-        <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap_or</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">-</span><span style="color: var(--Integers)">1</span><span style="color: var(--DecType)">isize</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+        <span style="color: var(--Delimiter)">.</span><span style="color: var(--Function)">unwrap_or</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Operator)">-</span><span style="color: var(--Integers)">1isize</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--Logical)">if</span> <span style="color: var(--Default)">num</span> <span style="color: var(--Operator)">&lt;</span> <span style="color: var(--Integers)">0</span> <span style="color: var(--Bracket)">{</span>
         <span style="color: var(--Return)">return</span><span style="color: var(--Delimiter)">;</span>
     <span style="color: var(--Bracket)">}</span>
 
-    <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"Counting up to {num}:"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+    <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"Counting up to {num}:"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--Logical)">for</span> <span style="color: var(--Default)">i</span> <span style="color: var(--Keyword)">in</span> <span style="color: var(--Integers)">0</span><span style="color: var(--Operator)">..</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Default)">num</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Bracket)">{</span>
-        <span style="color: var(--Function)">print</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">" {i}"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+        <span style="color: var(--Function)">print!</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">" {i}"</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
     <span style="color: var(--Bracket)">}</span>
 
-    <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"!\nJob done."</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+    <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"!\nJob done."</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 <span style="color: var(--Bracket)">}</span>
 
 <span style="color: var(--Keyword)">fn</span> <span style="color: var(--Function)">main</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span> <span style="color: var(--Operator)">-&gt;</span> <span style="color: var(--DecType)">Result</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Bracket)">()</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--DecType)">Box</span><span style="color: var(--Bracket)">&lt;</span><span style="color: var(--Keyword)">dyn</span> <span style="color: var(--Namespace)">std</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--Namespace)">error</span><span style="color: var(--Delimiter)">::</span><span style="color: var(--DecType)">Error</span><span style="color: var(--Bracket)">&gt;</span><span style="color: var(--Bracket)">&gt;</span> <span style="color: var(--Bracket)">{</span>
@@ -434,7 +439,7 @@
 
     <span style="color: var(--Function)">formalities</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
-    <span style="color: var(--Function)">println</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"Diff:\n- old value: {}\n+ new value: {}"</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Integers)">40</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Default)">int_val</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
+    <span style="color: var(--Function)">println!</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Strings)">"Diff:\n- old value: {}\n+ new value: {}"</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Integers)">40</span><span style="color: var(--Delimiter)">,</span> <span style="color: var(--Default)">int_val</span><span style="color: var(--Bracket)">)</span><span style="color: var(--Delimiter)">;</span>
 
     <span style="color: var(--DecType)">Ok</span><span style="color: var(--Bracket)">(</span><span style="color: var(--Bracket)">()</span><span style="color: var(--Bracket)">)</span>
 <span style="color: var(--Bracket)">}</span>

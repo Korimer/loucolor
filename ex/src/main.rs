@@ -1,3 +1,4 @@
+
 ///Hello, This is my rust program!!! visit
 /// https://www.rust-lang.org
 ///for info on rust itself.
@@ -6,21 +7,26 @@
 use std::{collections::HashMap, env, hash::Hash};
 use regex::Regex;
 
-// Peproc
+// Debug
+// ...These are a bit tricky to demonstrate, they can show up basically anywhere
+// But they *are* always on thier own line, for what its worth
 #[allow(clippy::approx_constant)]
+// Also the colors here are actually VERY interchangable, so if one specific color clashes I can just remove it lol
 
 // Constant
 const PI: f64 = 3.1415926535;
 
-// Pub is a Modifier, struct is a Type
+#[derive(Debug)]
 pub struct Circle {
     radius: f64,
 }
 
+#[derive(Clone)]
 pub struct Square {
     side_length: f64,
 }
 
+#[derive(PartialEq,PartialOrd)]
 pub struct Triangle {
     side1: f64,
     side2: f64,
@@ -96,7 +102,7 @@ fn formalities() {
     for step in steps_in_formalities {
         step(&args);
         i += 1;
-        println(
+        println!(
             "just completed step {}!",
             stepnames.get
                 (&i)
@@ -109,7 +115,7 @@ fn formalities() {
 // ...Is there an artist equivalent to this? Its like downloading a custom brush or smth lol
 macro_rules! greet {
     ($name:expr) => {
-        println(
+        println!(
             "Hello, {}!",
             $name
         );
@@ -126,7 +132,7 @@ fn hello(
 
     // Yeah the {bang} bit could just be replaced by a "!"
     // But having text substitution with a single char demonstrates highlighting better
-    print(
+    print!(
         "my standard pulse is: {escaped_str}{bang}{bang}{bang}{newline}"
     );
 }
@@ -176,7 +182,7 @@ fn get_shape(
     if let Some(capture)
         = regex.captures(&theshape)
     {
-        println(
+        println!(
             "The shape is... {}",
             capture
                 .get(1)
@@ -202,7 +208,7 @@ fn is_url(
         .unwrap();
 
     if re.is_match(&url) {
-        println("is a url!");
+        println!("is a url!");
     }
 }
 
@@ -219,13 +225,13 @@ fn count(args: &Vec<String>) {
         return;
     }
 
-    println("Counting up to {num}:");
+    println!("Counting up to {num}:");
 
     for i in 0..(num) {
-        print(" {i}");
+        print!(" {i}");
     }
 
-    println("!\nJob done.");
+    println!("!\nJob done.");
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -235,7 +241,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     formalities();
 
-    println("Diff:\n- old value: {}\n+ new value: {}", 40, int_val);
+    println!("Diff:\n- old value: {}\n+ new value: {}", 40, int_val);
 
     Ok(())
 }
