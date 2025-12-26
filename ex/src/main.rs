@@ -10,10 +10,10 @@ use regex::Regex;
 // Debug
 // ...These are a bit tricky to demonstrate, they can show up basically anywhere
 // But they *are* always on thier own line, for what its worth
-#[allow(clippy::approx_constant)]
 // Also the colors here are actually VERY interchangable, so if one specific color clashes I can just remove it lol
 
 // Constant
+#[allow(clippy::approx_constant)]
 const PI: f64 = 3.1415926535;
 
 #[derive(Debug)]
